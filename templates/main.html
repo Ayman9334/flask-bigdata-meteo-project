@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block t %}
+BIG-DATA
+{% endblock %}
+{% block s %}
+<style>
+  .body {
+    background: url("../static/backgroud.jpg") no-repeat center fixed;
+    background-size: cover;
+  }
+
+  .lform {
+    box-shadow: 3px 3px 0.5px;
+    border-radius: 5%;
+    margin-top: 250px;
+    max-width: 400px;
+  }
+</style>
+{% endblock %}
+{% block c %}
+
+<div class="pl-3 pt-3 bg-light p-3 lform">
+  <h2>Rempli la form : </h2>
+  <form action="/table" method="post">
+    <div class="form-group">
+      <label>Nom de Station : </label>
+      <input type="text" class="form-control" name="nom" required>
+    </div>
+    <div class="form-group">
+      <label>Date : </label>
+      <input type="date" class="form-control" min="2013-01-01" max='{{ todaydt }}' name="date" required>
+    </div>
+    <input type="submit" class="btn btn-success">
+  </form>
+</div>
+{% endblock %}

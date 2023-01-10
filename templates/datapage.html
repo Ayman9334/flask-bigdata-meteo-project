@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+{% block t %}
+BIG-DATA/DATA
+{% endblock %}
+
+
+{% block s %}
+<style>
+    .body {
+        background: url("../static/backgroud2.jpg") no-repeat center fixed;
+        background-size: cover;
+    }
+    .tabls{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .tabls img{
+        width: 500px;
+        max-width: 80vw;
+    }
+</style>
+{% endblock %}
+
+
+{% block c %}
+<div class="container bg-white p-4 mb-4">
+    <div class="text-center border mb-5">
+        <h1>Station : {{ nom }}</h1>
+        <h3>Date : {{ date }}</h3>
+    </div>
+    <div class="table-responsive">
+    <table class="table table-bordered table-striped text-center">
+        <thead>
+            <tr>
+                <th scope="col">Hours</th>
+                <th scope="col">Temperature</th>
+                <th scope="col">Humidité</th>
+                <th scope="col">Vit vent moy10min avt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Dict in listDict %}
+            <tr>
+                <td>{{ Dict["huere"] }}</td>
+                <td>{{ Dict["temp"] }}°C</td>
+                <td>{{ Dict["Humidite"] }}%</td>
+                <td>{{ Dict["vvma"] }} m/s</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="text-center border mt-5">
+        <h1>Les graphiques</h1>
+    </div>
+    <div class="tabls border pb-5">
+        <img src="{{url_for('static', filename='JourTemp.png')}}" alt="">
+        <img src="{{url_for('static', filename='JourHumidite.png')}}" alt="">
+        <img src="{{url_for('static', filename='Jourvvma.png')}}" alt="">
+    </div>
+    <div class="mt-5 text-center border p-3"> <h3>Télécharger un fishier <strong>WORDCLOUD</strong> :</h3><a class="btn btn-success" href="{{url_for('downloadwc')}}">Download</a></div>
+    <div class="mt-5 text-center border p-3"> <h3>Télécharger ces données au format json :</h3><a class="btn btn-success" href="{{url_for('download')}}">Download</a></div>
+</div>
+{% endblock %}
